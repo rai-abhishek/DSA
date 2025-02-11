@@ -69,7 +69,7 @@ public class IntrmdtQ {
         if(countOnes == n) return n;
 
         //all zeros in array
-        if(countOnes == 0) return 1;
+        if(countOnes == 0) return 0;
 
         for(int i = 0; i < n;i++) {
             if(a[i] == 0) {
@@ -87,7 +87,7 @@ public class IntrmdtQ {
                         r++;
                     } else break;
                 }
-                if( l + r == n) {
+                if( l + r == countOnes) {
                     ans = Math.max(ans,l + r);
                 } else {
                     ans = Math.max(ans,l + r + 1);
@@ -108,7 +108,7 @@ public class IntrmdtQ {
         int freq = 1;
         int n = a.length;
 
-        for(int i = 0; i < n;i++){
+        for(int i = 1; i < n;i++){
             if(freq == 0) {
                 majority = a[i];
                 freq++;
@@ -177,7 +177,7 @@ public class IntrmdtQ {
 
     public static void main(String[] args) {
         int[] n = {1,1,0,1,1,0,1,1,1};
-        int[] n1 = {1,1,0,1,1,1};
+        int[] n1 = {1,1,1,0,1,1,0,1,0,0,1,0,1,0,0,0,0,0,0,1,1,0,1,0,0,1,1,0,0,1,0,0,0,1,0,0,1,0,1,1,1,0,0,10,0,0,0,0,1,0};
         System.out.println(findMaxConsecutiveOnesByReplace(n));
         System.out.println(findMaxConsecutiveOnesBySwap(n1));
 

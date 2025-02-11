@@ -47,6 +47,7 @@ public class BitsQ {
         return ans;
     }
 
+
     public static String binaryAdditionOfString(String A, String B) {
         StringBuilder result = new StringBuilder();
 

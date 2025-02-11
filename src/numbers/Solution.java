@@ -5,43 +5,50 @@ import java.util.Arrays;
 import java.util.List;
 
 class Solution {
-    public static int pivotIndex(int[] nums) {
-        int[] psum = new int[nums.length];
-        psum[0] = nums[0];
-        int n = psum.length;
+    public static int[][] shiftGrid(int[][] grid, int k) {
+        int row = grid.length;
+        int col = grid[0].length;
+        int[][] ans = new int[row][col];
+        int idx = 0;
+        k = k % (row * col);
 
-        for(int i = 1; i < n;i++) {
-            psum[i] = psum[i-1] + nums[i];
-        }
-
-        int leftSum = 0;
-        int rightSum = 0;
-        for(int i = 0; i < n; i++) {
-            if(i == 0) {
-                leftSum = 0;
-                rightSum = psum[n - 1] - psum[0];
-            } else if(i == n-1) {
-                leftSum = psum[i - 1];
-                rightSum = 0;
-            } else {
-                leftSum = psum[i - 1];
-                rightSum = psum[n - 1] - psum[i];
+        for(int i = 0; i < row;i++) {
+            int[] eachRow = new int[col];
+            for(int j = 0; j < col; j++) {
+                eachRow[j] = grid[i][j + k];
             }
-
-            if( leftSum == rightSum) {
-                return i;
-            }
+            ans[idx] = eachRow;
+            idx++;
         }
-        return -1;
+        return ans;
     }
 
 
     public static void main(String[] args) {
-        int[] n = {1,7,3,6,5,6};
-//        int ans = pivotIndex(n);
-//        System.out.println(ans);
+        int[][] n = {
+                {1,2,3},
+                {4,5,6},
+                {7,8,9}
+        };
 
-        System.out.println();
+        System.out.println("-----Input-----");
+        for(int[] row: n) {
+            for(int col: row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+
+        int[][] ans = new int[3][3];
+        ans = shiftGrid(n,1);
+
+        System.out.println("-----Output-----");
+        for(int[] row: ans) {
+            for(int col: row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
     }
 }
 

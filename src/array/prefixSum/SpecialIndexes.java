@@ -22,11 +22,6 @@ public class SpecialIndexes {
         print(peven);
 
         // Calculate prefix sum for odd indexes
-//        if(ar[0] % 2 != 0 ) {
-//            podd[0] = ar[0];
-//        } else {
-//            podd[0] = 0;
-//        }
         podd[0] = 0;
         for(int i = 1; i < ar.length;i++) {
             if(i % 2 != 0) {

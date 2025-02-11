@@ -160,7 +160,7 @@ public class TwoDQuestions {
         int[][] tr = new int[m][n];
         int row = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < m; i++) {
             int[] a = new int[n];
             int idx = 0;
             for (int j = i + 1; j < n; j++) {

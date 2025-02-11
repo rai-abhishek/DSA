@@ -66,7 +66,7 @@ public class Contribution {
     public static long sumOfSubArraysUsingObservation(int[] A) {
         int n = A.length;
         long ans = 0;
-        // contribution of ith element in array = (i + 1) * (n -i)
+        // contribution of ith element in array = (i + 1) * (n - i)
 
         for(int i = 0; i < n; i++) {
             ans += (long) (i + 1) * (n -i) * A[i];
