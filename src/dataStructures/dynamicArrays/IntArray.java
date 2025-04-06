@@ -15,20 +15,22 @@ public class IntArray implements Iterable<Integer> {
     private int len = 0;
     private int capacity = 0;
 
-    //Initialize the array
+    // Initialize the array
 
-    //Default capacity
+    // Default capacity
     public IntArray() {
         this(DEFAULT_CAP);
     }
+
     // with certain capacity
     public IntArray(int capacity) {
         this.capacity = capacity;
         arr = new int[capacity];
     }
-    //given an array, make it a dynamic array
+
+    // given an array, make it a dynamic array
     public IntArray(int[] array) {
-        arr = Arrays.copyOf(array,array.length);
+        arr = Arrays.copyOf(array, array.length);
         capacity = len = array.length;
     }
     // Implement Methods
@@ -37,11 +39,13 @@ public class IntArray implements Iterable<Integer> {
     public int size() {
         return len;
     }
+
     // isEmpty
     public boolean isEmpty() {
         return len == 0;
     }
-    //get / set
+
+    // get / set
     public int get(int index) {
         return arr[index];
     }
@@ -58,9 +62,11 @@ public class IntArray implements Iterable<Integer> {
      */
     public void add(int element) {
         if (len + 1 > capacity) {
-            if (capacity == 0 ) capacity = 1;
-            else capacity *= 2;
-            arr = Arrays.copyOf(arr,capacity);
+            if (capacity == 0)
+                capacity = 1;
+            else
+                capacity *= 2;
+            arr = Arrays.copyOf(arr, capacity);
         }
         arr[len++] = element;
     }
@@ -70,15 +76,17 @@ public class IntArray implements Iterable<Integer> {
     /**
      * create a new array.
      * maintain two pointers i & j.
-     * if data at i == remove data , then skip it. else copy each value at index from old (i) to new array (j)
+     * if data at i == remove data , then skip it. else copy each value at index
+     * from old (i) to new array (j)
      * copy new array to old array.
      */
     public int removeAt(int rm_index) {
-        if(rm_index >= len && rm_index < 0) throw new IndexOutOfBoundsException();
+        if (rm_index >= len && rm_index < 0)
+            throw new IndexOutOfBoundsException();
         int data = arr[rm_index];
-        int[] new_array = new int[len-1];
-        for(int i=0, j=0; i < len; i++,j++) {
-            if(i == rm_index) {
+        int[] new_array = new int[len - 1];
+        for (int i = 0, j = 0; i < len; i++, j++) {
+            if (i == rm_index) {
                 j--;
             } else {
                 new_array[j] = arr[i];
@@ -91,8 +99,8 @@ public class IntArray implements Iterable<Integer> {
 
     // search and remove the element if it is found in array
     public boolean remove(int element) {
-        for(int i=0; i < len; i++) {
-            if(arr[i] == element) {
+        for (int i = 0; i < len; i++) {
+            if (arr[i] == element) {
                 removeAt(i);
                 return true;
             }
@@ -103,11 +111,12 @@ public class IntArray implements Iterable<Integer> {
     // reverse the content of the array
 
     /**
-     * use the two pointer approach. It will have O(N) = N and space complexity = O(1).
+     * use the two pointer approach. It will have O(N) = N and space complexity =
+     * O(1).
      */
     public void reverse() {
         int left = 0;
-        int right = arr.length -1;
+        int right = arr.length - 1;
 
         while (left < right) {
             int temp = arr[left];
@@ -122,22 +131,18 @@ public class IntArray implements Iterable<Integer> {
 
     /**
      * Binary search on this array to find an element in O(log(n)) time
+     *
      * @return
      */
     public int binarySearch(int key) {
-        int index = Arrays.binarySearch(arr,0,len,key);
+        int index = Arrays.binarySearch(arr, 0, len, key);
         return index;
     }
 
-    //sort
+    // sort
     public void sort() {
-        Arrays.sort(arr,0,len);
+        Arrays.sort(arr, 0, len);
     }
-
-
-
-
-
 
     // Iterator is still fast but not as fast as iterative for loop
     @Override
@@ -152,6 +157,7 @@ public class IntArray implements Iterable<Integer> {
             public Integer next() {
                 return arr[index++];
             };
+
             public void remove() {
                 throw new UnsupportedOperationException();
             }
@@ -160,13 +166,14 @@ public class IntArray implements Iterable<Integer> {
 
     @Override
     public String toString() {
-        if(len == 0) return "[]";
+        if (len == 0)
+            return "[]";
         else {
             StringBuilder sb = new StringBuilder(len).append("[");
-            for(int i=0; i < len - 1; i++) {
-                sb.append(arr[i]+",");
+            for (int i = 0; i < len - 1; i++) {
+                sb.append(arr[i] + ",");
             }
-            return sb.append(arr[len -1] +"]").toString();
+            return sb.append(arr[len - 1] + "]").toString();
         }
 
     }
